@@ -11,6 +11,7 @@ import android.os.Messenger
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 import hu.bme.aut.android.servicedemo.service.FileSystemStatsIntentService
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.layoutContainer, LocationDashboardFragment())
                 .commit()
         }
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        SettingsActivity.startOrStopServiceAsNecessary(sharedPreferences, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
